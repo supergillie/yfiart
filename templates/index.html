@@ -34,6 +34,28 @@
             height: 100%;
         }
 
+        /* Updated styles for the reload button */
+        .reload-btn {
+            display: block;
+            margin: 20px auto;
+            padding: 10px 20px;
+            background-color: #333;
+            color: #fff;
+            border: 2px solid #fff;
+            border-radius: 50px; /* Rounded edges */
+            font-weight: bold;
+            text-transform: uppercase; /* Uppercase text */
+            letter-spacing: 1px; /* Space between letters */
+            cursor: pointer;
+            transition: all 0.3s ease-in-out; /* Smooth transition */
+            outline: none; /* Remove default outline */
+        }
+        .reload-btn:hover {
+            background-color: #fff;
+            color: #333;
+            border-color: #333;
+        }
+
         /* Media query for mobile devices */
         @media (max-width: 768px) {
             .grid {
@@ -50,5 +72,8 @@
             </div>
         {% endfor %}
     </div>
+      <!-- Reload button -->
+      <button class="reload-btn" onclick="location.reload();">Reload</button>
+
 </body>
 </html>
