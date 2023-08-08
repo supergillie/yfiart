@@ -104,27 +104,17 @@
     </div>
 
 
- 
-    <!-- Artist input field and button -->
     <div class="artist-input">
-        <input type="text" id="artistName" placeholder="Enter artist name" onkeyup="handleKeyUp(event);" onblur="handleBlur();"> 
-
+        <input type="text" id="artistName" placeholder="Enter artist name" onkeyup="handleKeyUp(event);">
     </div>
-    <button class="reload-btn" onclick="loadAll();">reload</button>
+    <button class="reload-btn">reload</button>
+    
 </body>
 
 <script>
  
 
-    // Modify the reload button's onclick function
-    document.querySelector('.reload-btn').onclick = function() {
-        const artistName = document.getElementById('artistName').value;
-        location.reload();
-        // Scroll to the top of the page
-        window.scrollTo(0, 0);
-     
-    };
-
+ 
     function loadArtistAlbums() {
         const artistName = document.getElementById('artistName').value;
         if (artistName) {
@@ -132,24 +122,27 @@
         }
     }
 
-    function loadAll() {
-        const artistName = document.getElementById('artistName').value;
-        if (artistName) {
-            location.href = `/artist/${artistName}`;
-        } else {
-            location.reload();
-            // Scroll to the top of the page
-            window.scrollTo(0, 0);
-        }
+    document.querySelector('.reload-btn').addEventListener('click', loadAll);
+
+function loadAll() {
+    const artistName = document.getElementById('artistName').value.trim();
+    if (artistName) {
+        location.href = `/artist/${artistName}`;
+    } else {
+        location.reload();
+        // Scroll to the top of the page
+        window.scrollTo(0, 0);
     }
+}
 
-
-    function handleKeyUp(event) {
-        if (event.key === 'Enter') {
-            loadArtistAlbums();
-        }
+function handleKeyUp(event) {
+    if (event.key === 'Enter') {
+        loadAll();
     }
+}
 
+
+ 
     function handleBlur() {
         const artistName = document.getElementById('artistName').value;
         if (artistName) {
