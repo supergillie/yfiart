@@ -107,7 +107,7 @@
  
     <!-- Artist input field and button -->
     <div class="artist-input">
-        <input type="text" id="artistName" placeholder="Enter artist name" onkeyup="handleKeyUp(event);">
+        <input type="text" id="artistName" placeholder="Enter artist name" onkeyup="handleKeyUp(event);" onblur="handleBlur();">
     </div>
  
     <button class="reload-btn" onclick="loadAll();">reload</button>
@@ -151,6 +151,13 @@
             loadArtistAlbums();
         }
     }
+
+    function handleBlur() {
+    const artistName = document.getElementById('artistName').value;
+    if (artistName) {
+        location.href = `/artist/${artistName}`;
+    }
+}
 
 
 </script>
