@@ -32,4 +32,4 @@ def artist(artist_name):
     return render_template('index.html', albums=albums, results_length=results_length)
 
 if __name__ == '__main__':
-    app.run(debug=False)
+    app.run(debug=True)
