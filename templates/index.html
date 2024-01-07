@@ -109,12 +109,11 @@
     </div>
     <button class="reload-btn">reload</button>
     
+    <!--span>Number of rows in data['results']: {{ results_length }}</span-->
+
 </body>
 
 <script>
- 
-
- 
     function loadArtistAlbums() {
         const artistName = document.getElementById('artistName').value;
         if (artistName) {
@@ -124,34 +123,36 @@
 
     document.querySelector('.reload-btn').addEventListener('click', loadAll);
 
-function loadAll() {
-    const artistName = document.getElementById('artistName').value.trim();
-    if (artistName) {
-        location.href = `/artist/${artistName}`;
-    } else {
-        location.reload();
-        // Scroll to the top of the page
-        window.scrollTo(0, 0);
+    function loadAll() {
+        const artistName = document.getElementById('artistName').value.trim();
+        if (artistName) {
+            location.href = `/artist/${artistName}`;
+        } else {
+            location.reload();
+            window.scrollTo(0, 0);
+        }
     }
-}
 
-function handleKeyUp(event) {
-    if (event.key === 'Enter') {
-        loadAll();
+    function handleKeyUp(event) {
+        if (event.key === 'Enter') {
+            loadAll();
+        }
     }
-}
 
+    function setDefaultArtist() {
+        const artistName = document.getElementById('artistName').value.trim();
+        if (!artistName) {
+            location.href = '/artist/Abba';
+        }
+    }
 
- 
     function handleBlur() {
         const artistName = document.getElementById('artistName').value;
         if (artistName) {
             location.href = `/artist/${artistName}`;
     }
-}
 
-
+    window.onload = setDefaultArtist;
 </script>
 
- 
 </html>
