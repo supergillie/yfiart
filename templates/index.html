@@ -114,15 +114,6 @@
 </body>
 
 <script>
-    function loadArtistAlbums() {
-        const artistName = document.getElementById('artistName').value;
-        if (artistName) {
-            location.href = `/artist/${artistName}`;
-        }
-    }
-
-    document.querySelector('.reload-btn').addEventListener('click', loadAll);
-
     function loadAll() {
         const artistName = document.getElementById('artistName').value.trim();
         if (artistName) {
@@ -146,13 +137,11 @@
         }
     }
 
-    function handleBlur() {
-        const artistName = document.getElementById('artistName').value;
-        if (artistName) {
-            location.href = `/artist/${artistName}`;
-    }
-
     window.onload = setDefaultArtist;
+
+    // Attach event listener to the reload button
+    document.querySelector('.reload-btn').addEventListener('click', loadAll);
 </script>
+
 
 </html>
