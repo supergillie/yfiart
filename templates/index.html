@@ -119,8 +119,8 @@
         if (artistName) {
             location.href = `/artist/${artistName}`;
         } else {
-            location.reload();
-            window.scrollTo(0, 0);
+            // Redirect to a default artist if the input is empty
+            location.href = '/artist/Abba';
         }
     }
 
@@ -130,18 +130,10 @@
         }
     }
 
-    function setDefaultArtist() {
-        const artistName = document.getElementById('artistName').value.trim();
-        if (!artistName) {
-            location.href = '/artist/Abba';
-        }
-    }
-
-    window.onload = setDefaultArtist;
-
     // Attach event listener to the reload button
     document.querySelector('.reload-btn').addEventListener('click', loadAll);
 </script>
+
 
 
 </html>
