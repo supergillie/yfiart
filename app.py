@@ -29,7 +29,7 @@ def artist(artist_name):
     
     # Randomly select 9 album covers if there are at least 9 results
     albums = random.sample(data['results'], min(9, len(data['results'])))
-    return render_template('index.html', albums=albums, results_length=results_length)
+    return render_template('index.html', albums=albums, results_length=results_length, artist_name=artist_name)
 
 if __name__ == '__main__':
     app.run(debug=True)
