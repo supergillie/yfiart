@@ -18,6 +18,7 @@ def home():
 @app.route('/artist/<artist_name>/<int:page>')
 def artist(artist_name, page=1):
     per_page = 9  # Number of albums per page
+    records_per_fetch = 50  # Number of records fetched each time
     start = (page - 1) * per_page
     end = start + per_page
     
