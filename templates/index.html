@@ -120,11 +120,10 @@
 <script>
     function loadAll() {
         let artistName = document.getElementById('artistName').value.trim();
-        let currentPage = parseInt(document.getElementById('currentPage').value);
-        let totalPages = {{ total_pages }};
+        let currentPage = parseInt(document.getElementById('currentPage').value) || 1;
 
-        // Increment the page number, loop back to 1 if it exceeds total pages
-        currentPage = (currentPage % totalPages) + 1;
+        // Increment the page number
+        currentPage += 1;
 
         if (!artistName) {
             artistName = 'Abba';  // Default artist
