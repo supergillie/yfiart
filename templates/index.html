@@ -111,19 +111,27 @@
     
     <!--span>Number of rows in data['results']: {{ results_length }}</span-->
 
+    
+    <!-- Add hidden input to store the current page number -->
+    <input type="hidden" id="currentPage" value="{{ page }}">
+  
 </body>
 
 <script>
     function loadAll() {
         let artistName = document.getElementById('artistName').value.trim();
+        let currentPage = parseInt(document.getElementById('currentPage').value);
+        let totalPages = {{ total_pages }};
 
-        // If artistName is empty, set a default artist (optional)
+        // Increment the page number, loop back to 1 if it exceeds total pages
+        currentPage = (currentPage % totalPages) + 1;
+
         if (!artistName) {
             artistName = 'Abba';  // Default artist
         }
 
-        // Redirect to the artist page
-        location.href = `/artist/${artistName}`;
+        // Redirect to the next page of the current artist
+        location.href = `/artist/${artistName}/${currentPage}`;
     }
 
     function handleKeyUp(event) {
