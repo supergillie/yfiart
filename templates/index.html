@@ -115,13 +115,15 @@
 
 <script>
     function loadAll() {
-        const artistName = document.getElementById('artistName').value.trim();
-        if (artistName) {
-            location.href = `/artist/${artistName}`;
-        } else {
-            // Redirect to a default artist if the input is empty
-            location.href = '/artist/Abba';
+        let artistName = document.getElementById('artistName').value.trim();
+
+        // If artistName is empty, set a default artist (optional)
+        if (!artistName) {
+            artistName = 'Abba';  // Default artist
         }
+
+        // Redirect to the artist page
+        location.href = `/artist/${artistName}`;
     }
 
     function handleKeyUp(event) {
@@ -133,7 +135,5 @@
     // Attach event listener to the reload button
     document.querySelector('.reload-btn').addEventListener('click', loadAll);
 </script>
-
-
 
 </html>
