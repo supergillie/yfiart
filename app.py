@@ -15,7 +15,12 @@ def home():
     return redirect('/artist/Abba', code=302)
 
 @app.route('/artist/<artist_name>')
-def artist(artist_name):
+@app.route('/artist/<artist_name>/<int:page>')
+def artist(artist_name, page=1):
+    per_page = 9  # Number of albums per page
+    start = (page - 1) * per_page
+    end = start + per_page
+    
     url = BASE_URL + artist_name
     headers = {
         "User-Agent": "FlaskApp/1.0 +http://localhost:5000",
@@ -27,9 +32,13 @@ def artist(artist_name):
 
     print("Number of rows in data['results']:", len(data['results']))
     
-    # Randomly select 9 album covers if there are at least 9 results
-    albums = random.sample(data['results'], min(9, len(data['results'])))
-    return render_template('index.html', albums=albums, results_length=results_length, artist_name=artist_name)
+    # Get a subset of albums for the current page
+    albums = data['results'][start:end]
+
+    # Calculate the total number of pages
+    total_pages = (len(data['results']) + per_page - 1) // per_page
+
+    return render_template('index.html', albums=albums, results_length=results_length, artist_name=artist_name, page=page, total_pages=total_pages)
 
 if __name__ == '__main__':
     app.run(debug=True)
