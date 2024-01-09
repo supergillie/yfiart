@@ -118,12 +118,20 @@
 </body>
 
 <script>
+    let lastArtistName = document.getElementById('artistName').value.trim(); // Store the last artist name
+
     function loadAll() {
-        let artistName = document.getElementById('artistName').value.trim();
+        const artistName = document.getElementById('artistName').value.trim();
         let currentPage = parseInt(document.getElementById('currentPage').value) || 1;
 
-        // Increment the page number
-        currentPage += 1;
+        // Check if artist name has changed, if so, reset page to 1
+        if (artistName !== lastArtistName) {
+            currentPage = 1;
+            lastArtistName = artistName; // Update the last artist name
+        } else {
+            // Increment the page number
+            currentPage += 1;
+        }
 
         if (!artistName) {
             artistName = 'Abba';  // Default artist
@@ -141,6 +149,12 @@
 
     // Attach event listener to the reload button
     document.querySelector('.reload-btn').addEventListener('click', loadAll);
+
+    // Attach event listener to the artist input field for changes
+    document.getElementById('artistName').addEventListener('change', function() {
+        lastArtistName = this.value.trim(); // Update last artist name on change
+    });
 </script>
+
 
 </html>
